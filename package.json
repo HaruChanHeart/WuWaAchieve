@@ -1,5 +1,6 @@
 {
-  "name": "example-with-tailwindcss",
+  "name": "wuwaachieve",
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
     "dev": "vinxi dev --host",
