@@ -11,7 +11,7 @@ export default createHandler(() => (
           <meta name="viewport" content="width=device-width, initial-scale=1" />
           <meta property="description" content="Wuthering Waves Achievements DB" />
           <meta property="twitter:image" content="https://wuwa-achieve.vercel.app/thumbnail.webp" />
-          <meta property="twitter:card" content="https://wuwa-achieve.vercel.app/thumbnail.webp" />
+          <meta property="twitter:card" content="summary_large_image" />
           <meta property="twitter:title" content="WuWaAchieve" />
           <meta property="twitter:description" content="Wuthering Waves Achievements DB" />
           <meta property="og:image" content="https://wuwa-achieve.vercel.app/thumbnail.webp" />
