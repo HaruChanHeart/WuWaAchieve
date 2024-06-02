@@ -6,14 +6,15 @@ export default createHandler(() => (
     document={({ assets, children, scripts }) => (
       <html lang="en">
         <head>
+          <title>WuWaAchieve</title>
           <meta charset="utf-8" />
           <meta name="viewport" content="width=device-width, initial-scale=1" />
           <meta property="description" content="Wuthering Waves Achievements DB" />
-          <meta property="twitter:image" content="/thumbnail.webp" />
-          <meta property="twitter:card" content="/thumbnail.webp" />
+          <meta property="twitter:image" content="https://wuwa-achieve.vercel.app/thumbnail.webp" />
+          <meta property="twitter:card" content="https://wuwa-achieve.vercel.app/thumbnail.webp" />
           <meta property="twitter:title" content="WuWaAchieve" />
           <meta property="twitter:description" content="Wuthering Waves Achievements DB" />
-          <meta property="og:image" content="/thumbnail.webp" />
+          <meta property="og:image" content="https://wuwa-achieve.vercel.app/thumbnail.webp" />
           <meta property="og:site_name" content="WuWaAchieve" />
           <meta property="og:title" content="WuWaAchieve" />
           <meta property="og:description" content="Wuthering Waves Achievements DB" />
