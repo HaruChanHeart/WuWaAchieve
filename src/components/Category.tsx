@@ -34,17 +34,17 @@ const ConvertLevel = (LEVEL: number) => {
 
 // fetch json
 const getACV = cache(async () => {
-    const r = await fetch(`/api/${lang}/achievement`);
+    const r = await fetch(`/api/${lang}/achievement.json`);
     return (await r.json()) as IAchieve[];
 }, "acv");
 
 const getGROUP = cache(async () => {
-    const r = await fetch(`/api/${lang}/group`);
+    const r = await fetch(`/api/${lang}/group.json`);
     return (await r.json()) as IGroup[];
 }, "acv_grp");
 
 const getCATEGORY = cache(async () => {
-    const r = await fetch(`/api/${lang}/category`);
+    const r = await fetch(`/api/${lang}/category.json`);
     return (await r.json()) as ICategory[];
 }, "acv_cat");
 
