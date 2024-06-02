@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    font-family: 'SUITE Variable', sans-serif;
+}
+
+.astrite {
+    background-image: url('/astrite.webp');
+}
