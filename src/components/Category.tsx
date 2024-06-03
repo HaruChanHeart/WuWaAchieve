@@ -1,9 +1,10 @@
 import type { Component } from 'solid-js';
 import { createSignal, For } from 'solid-js';
-import { createLocalStore } from '../utils/localstore';
+import { createLocalStore, mapLocale } from '../utils/localstore';
 import { cache, createAsync } from '@solidjs/router';
 
-const lang = localStorage.getItem('locale') ?? 'ko';
+// 设置语言为浏览器默认语言
+const lang = localStorage.getItem('locale') ?? mapLocale(navigator.language);
 
 interface IAchieve {
     id: number,
