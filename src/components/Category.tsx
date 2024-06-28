@@ -147,28 +147,68 @@ const Category: Component = () => {
                     onClick={() => setCategory(DATA.id)}>
                     <div class="flex flex-col flex-1">
                         <p class="text-lg font-bold">{DATA.name}</p>
-                        <p class="text-md text-slate-400">{CompleteCount(DATA.id)} / {acv()?.filter((o: IAchieve) => o.groupid === DATA.id).length} {CompleteCount(DATA.id) === acv()?.filter((o: IAchieve) => o.groupid === DATA.id).length ? '✅' : null}</p>
+                        <p class="text-md text-slate-400">
+                            <span class="mr-2">{CompleteCount(DATA.id)} / {acv()?.filter((o: IAchieve) => o.groupid === DATA.id).length}</span>
+                            <span class={CompleteCount(DATA.id) === acv()?.filter((o: IAchieve) => o.groupid === DATA.id).length ? 'text-sm text-green-300' : 'text-sm text-yellow-400'}>
+                                {((CompleteCount(DATA.id) / (acv()?.filter((o: IAchieve) => o.groupid === DATA.id).length ?? 0)) * 100).toFixed(2)}%
+                            </span>
+                        </p>
                     </div>
                 </div>
             </div>
         )
     }
 
+    // Load JSON File from disk
+    const LoadStorage = (e: any) => {
+        const f = e.target.files[0];
+        const fr = new FileReader();
+
+        fr.addEventListener('load', (e: any) => {
+            const a = e.target.result;
+            localStorage.setItem('achieve_list', a);
+            window.location.reload();
+        });
+
+        fr.readAsText(f);
+    }
+
+    // Save JSON File
+    const SaveStorage = () => {
+        const f = new Blob([localStorage.getItem('achieve_list') ?? ''], {type: "json"});
+        const a = document.createElement("a"), url = URL.createObjectURL(f);
+
+        a.href = url;
+        a.download = 'data.json';
+        document.body.appendChild(a);
+        a.click();
+    }
+
     return (
         <div class="container p-3 md:p-0 mx-auto grid md:grid-cols-6 md:w-1/2 justify-center gap-5">
             <div class="md:col-span-6 w-full flex flex-col md:flex-row justify-center items-start md:justify-start md:items-center space-y-3 md:space-y-0 space-x-5 text-white">
                 <div class="flex md:flex-row justify-start items-center">
-                    <div class="shrink-0 bg-blue-700 text-lg font-bold py-1 px-3 rounded-full">{TotalCount()} / {acv()?.length}</div>
+                    <div class="flex justify-center items-center gap-2 shrink-0 bg-blue-700 text-lg font-bold py-1 px-3 rounded-full">
+                        <span>{TotalCount()} / {acv()?.length} </span>
+                        <span class="text-sm">({((TotalCount() / (acv()?.length ?? 0)) * 100).toFixed(2)}%)</span>
+                    </div>
                     <div class="flex flex-row justify-center items-center shrink-0 ml-2 text-base font-bold">
                         <div class="w-5 h-5 mx-1 bg-transparent bg-contain bg-no-repeat astrite" />
                         <span> {AstriteCount()} / {TotalAstrite()}</span>
                     </div>
                 </div>
                 <div class="flex flex-row space-x-2">
-                    <input type="checkbox"
+                    <input type="checkbox" accept='application/json'
                         onChange={(e) => setShow(e.currentTarget.checked)} />
                     <span class="text-sm shrink-0">Show unchecked only</span>
                 </div>
+            </div>
+            <div class="col-span-6 flex flex-row space-x-2 text-white">
+                <div class="flex justify-center items-center bg-slate-700 rounded-full">
+                    <label class="cursor-pointer px-3 py-1" for="file">Load File</label>
+                    <input type="file" id="file" class="hidden" onChange={(e) => LoadStorage(e)} />
+                </div>
+                <button class="bg-slate-700 px-3 py-1 rounded-full" type="button" onClick={() => SaveStorage()}>Save File</button>
             </div>
             <aside class="col-span-6 md:col-span-2 flex flex-col space-y-5">
                 <For each={acv_cat()}>
